@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IslamiCore - Futuristik Nav</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset & Base Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --neon-blue: #00f2ff;
+            --deep-space: #05060a;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border-glass: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background-color: var(--deep-space);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            /* Background efek luar angkasa sederhana */
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(0, 242, 255, 0.05) 0%, transparent 40%);
+        }
+
+        /* Navbar Container */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 6%;
+            height: 80px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Logo Area */
+        .logo {
+            font-weight: 800;
+            font-size: 1.6rem;
+            letter-spacing: 3px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--neon-blue);
+            text-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        /* Nav Links */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+            height: 100%;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+        }
+
+        /* Hover Effect Line */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 25px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
+            transition: width 0.4s ease;
+        }
+
+        .nav-links a:hover::after, 
+        .nav-item.active a::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-blue);
+        }
+
+        /* Dropdown Styling */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: rgba(10, 11, 16, 0.95);
+            border: 1px solid var(--border-glass);
+            min-width: 220px;
+            padding: 1rem 0;
+            list-style: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-menu li a {
+            padding: 0.7rem 1.5rem;
+            display: block;
+            text-transform: none;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            transition: 0.3s;
+        }
+
+        .dropdown-menu li a::after { display: none; } /* Hilangkan garis bawah di dropdown */
+
+        .dropdown-menu li a:hover {
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--neon-blue);
+            padding-left: 1.8rem;
+        }
+
+        /* Content Placeholder */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 80px);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">ISLAMI<span>CORE</span></div>
+        
+        <ul class="nav-links">
+            <li class="nav-item active"><a href="index.html">Beranda</a></li>
+        </ul>
+        <div style="width: 150px; text-align: right;">
+            <small style="color: var(--neon-blue); font-size: 0.7rem; letter-spacing: 2px;">SYSTEM ACTIVE</small>
+        </div>
+    </nav>
+    <div class="hero">
+        <h1>SIFAT-SIFAT PENUNTUT ILMU</h1>
+        <p style="color: rgba(255,255,255,0.5); letter-spacing: 5px; text-transform: uppercase;">Eksplorasi Kebijaksanaan dalam Digitalisasi</p>
+    </div>
+<h1>C. Sifat-Sifat Penuntut Ilmu</h1>
+<br>
+<center><img src="sifat.PNG" alt="Foto 1" width="500" height="300"></center>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adab dan Akhlak dalam Islam</title>
+</head>
+<body>
+<h1>SIFAT-SIFAT PENUNTUT ILMU</h1>
+
+<h2>1. Pengertian Penuntut Ilmu</h2>
+<p>
+Penuntut ilmu adalah seseorang yang berusaha memperoleh pengetahuan,
+baik ilmu agama maupun ilmu umum, dengan sungguh-sungguh, ikhlas,
+dan penuh tanggung jawab. Seorang penuntut ilmu tidak hanya mencari
+pengetahuan, tetapi juga berusaha mengamalkan ilmu yang telah dipelajari
+dalam kehidupan sehari-hari.
+</p>
+
+<h2>2. Sifat-Sifat Penuntut Ilmu</h2>
+<ul>
+    <li>
+        <b>Ikhlas</b>
+        <p>Memiliki niat yang tulus dalam menuntut ilmu semata-mata karena Allah SWT, bukan untuk mendapatkan pujian atau pengakuan dari orang lain.</p>
+    </li>
+    <li>
+        <b>Rajin dan Bersungguh-sungguh</b>
+        <p>Selalu berusaha belajar dengan tekun, tidak mudah menyerah, serta tidak malas dalam mencari ilmu.</p>
+    </li>
+    <li>
+        <b>Sabar</b>
+        <p>Mampu menghadapi kesulitan dalam belajar dan tidak mudah putus asa ketika belum memahami suatu pelajaran.</p>
+    </li>
+    <li>
+        <b>Rendah Hati (Tawadhu)</b>
+        <p>Tidak merasa sombong karena memiliki banyak ilmu serta mau menerima nasihat dan pendapat orang lain.</p>
+    </li>
+    <li>
+        <b>Menghormati Guru</b>
+        <p>Memiliki sikap sopan, menghargai, dan mendengarkan nasihat guru sebagai orang yang membimbing dalam memperoleh ilmu.</p>
+    </li>
+    <li>
+        <b>Disiplin</b>
+        <p>Mampu mengatur waktu belajar, datang tepat waktu, menaati aturan, dan menyelesaikan tugas dengan penuh tanggung jawab.</p>
+    </li>
+    <li>
+        <b>Rasa Ingin Tahu yang Tinggi</b>
+        <p>Memiliki keinginan untuk terus belajar, bertanya, mencari jawaban, dan memperluas wawasan.</p>
+    </li>
+    <li>
+        <b>Jujur dan Amanah</b>
+        <p>Tidak menyontek, tidak berbohong, serta bertanggung jawab terhadap ilmu dan tugas yang diberikan.</p>
+    </li>
+    <li>
+        <b>Mengamalkan Ilmu</b>
+        <p>Tidak hanya memahami dan menghafalkan ilmu, tetapi juga menerapkannya dalam kehidupan sehari-hari.</p>
+    </li>
+    <li>
+        <b>Istiqamah</b>
+        <p>Konsisten dalam belajar dan terus berusaha menambah ilmu meskipun menghadapi berbagai tantangan.</p>
+    </li>
+</ul>
+
+<h2>3. Dalil tentang Menuntut Ilmu</h2>
+<p>Allah SWT berfirman dalam QS. Al-Mujadilah ayat 11:</p>
+
+<p>
+وَيَرْفَعِ اللّٰهُ الَّذِيْنَ اٰمَنُوْا مِنْكُمْ
+وَالَّذِيْنَ اُوْتُوا الْعِلْمَ دَرَجٰتٍ
+</p>
+
+<p>
+Artinya: "Allah akan mengangkat derajat orang-orang yang beriman
+di antaramu dan orang-orang yang diberi ilmu beberapa derajat."
+</p>
+
+<p>(QS. Al-Mujadilah: 11)</p>
+
+<h2>4. Kesimpulan</h2>
+<p>
+Seorang penuntut ilmu harus memiliki sifat ikhlas, rajin, sabar,
+rendah hati, disiplin, jujur, dan istiqamah. Ilmu yang bermanfaat
+bukan hanya ilmu yang dipelajari, tetapi juga ilmu yang diamalkan
+dalam kehidupan sehari-hari.
+</p>
+
+<p><b>"Ilmu tanpa adab ibarat pohon tanpa buah."</b></p>
+
+</body>
+</html>
+</html>
